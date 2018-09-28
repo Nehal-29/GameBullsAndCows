@@ -15,6 +15,11 @@
 		21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B09215E0505009F13F0 /* LaunchScreen.storyboard */; };
 		9375DF9BEE727B9A8084F448 /* Pods_Hackhathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */; };
 		F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */; };
+		F1816192215E1EF400D8CEE3 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */; };
+		F1816194215E1EF400D8CEE3 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */; };
+		F1816196215E1EF400D8CEE3 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */; };
+		F1816198215E1EF400D8CEE3 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816197215E1EF400D8CEE3 /* GTMSessionFetcher.framework */; };
+		F181619A215E1EF400D8CEE3 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816199215E1EF400D8CEE3 /* nanopb.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackhathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37C38DD4DAF3FC1A809835A /* Pods-Hackhathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Hackhathon/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1816197215E1EF400D8CEE3 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1816199215E1EF400D8CEE3 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +47,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1816192215E1EF400D8CEE3 /* FirebaseAuth.framework in Frameworks */,
+				F1816194215E1EF400D8CEE3 /* FirebaseCore.framework in Frameworks */,
+				F1816196215E1EF400D8CEE3 /* GoogleUtilities.framework in Frameworks */,
+				F1816198215E1EF400D8CEE3 /* GTMSessionFetcher.framework in Frameworks */,
+				F181619A215E1EF400D8CEE3 /* nanopb.framework in Frameworks */,
 				9375DF9BEE727B9A8084F448 /* Pods_Hackhathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +95,11 @@
 		93371DAF61980DDF78C8966C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */,
+				F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */,
+				F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */,
+				F1816197215E1EF400D8CEE3 /* GTMSessionFetcher.framework */,
+				F1816199215E1EF400D8CEE3 /* nanopb.framework */,
 				4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */,
 			);
 			name = Frameworks;
@@ -169,15 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Hackhathon-checkManifestLockResult.txt",
 			);
@@ -191,18 +207,18 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
