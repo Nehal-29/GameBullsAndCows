@@ -11,6 +11,18 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+class UsersOnlineData: NSObject {
+    var id: String?
+    var email: String?
+    var isOnline: Bool?
+    
+    init(id: String?, email: String?, isOnline: Bool?){
+        self.id = id
+        self.email = email
+        self.isOnline = isOnline
+    }
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet var usernameTxt: UITextField!
@@ -18,7 +30,7 @@ class ViewController: UIViewController {
     @IBOutlet var submitButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginLogicForEmailAndPassword(email: "tanvigpfse3@gmail.com")
+        loginLogicForEmailAndPassword(email: "nehal56IOS@gmail.com")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -42,10 +54,39 @@ class ViewController: UIViewController {
                 }
         }
             if let _ = Auth.auth().currentUser {
-               
+              let refArt = Database.database().reference().child("Users")
+                let key = refArt.childByAutoId().key
+                let userData = ["id":key ?? "",
+                              "Email": email,
+                              "isOnline": true
+                    ] as [String : Any]
+                refArt.child(key!).setValue(userData)
+                print("Data Addded")
             }
         
         }
+        let refArt = Database.database().reference().child("Users")
+        refArt.observe(DataEventType.value, with: { (snapshot) in
+             var artistList: [UsersOnlineData] = []
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                //iterating through all the values
+                for artists in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let artistObject = artists.value as? [String: AnyObject]
+                    let artistName  = artistObject?["Email"]
+                    let artistId  = artistObject?["id"]
+                    print(artistId!)
+                    print(artistName!)
+                    let artistGenre = artistObject?["isOnline"]
+                    //creating artist object with model and fetched values
+                    let artist = UsersOnlineData(id: artistId as! String?, email: artistName as! String?, isOnline: artistGenre as! Bool?)
+                    //appending it to list
+                    artistList.append(artist)
+                }
+            }
+            print(artistList)
+        })
     }
     //MARK: Submit Button Clicked
     @IBAction func submitButtonClicked() {
