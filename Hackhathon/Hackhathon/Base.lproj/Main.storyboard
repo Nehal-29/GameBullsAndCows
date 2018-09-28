@@ -40,7 +40,7 @@
                                                                 <rect key="frame" x="129" y="15" width="144" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzY-Ex-JrS">
                                                                 <rect key="frame" x="20" y="65" width="74" height="20.5"/>
@@ -60,6 +60,9 @@
                                                                     <constraint firstAttribute="height" constant="30" id="FRj-0u-CQI"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Submit"/>
+                                                                <connections>
+                                                                    <action selector="submitButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="s83-4v-KgV"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,6 +120,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="81x-6r-5rf"/>
+                    <connections>
+                        <outlet property="passwordTxt" destination="lTf-PO-OAm" id="q38-0s-VVZ"/>
+                        <outlet property="submitButton" destination="zbm-B7-oJA" id="y4f-Lw-ouo"/>
+                        <outlet property="usernameTxt" destination="aG7-cd-BfX" id="P9l-qG-NXX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

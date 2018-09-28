@@ -20,6 +20,9 @@
 		F1816196215E1EF400D8CEE3 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */; };
 		F1816198215E1EF400D8CEE3 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816197215E1EF400D8CEE3 /* GTMSessionFetcher.framework */; };
 		F181619A215E1EF400D8CEE3 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816199215E1EF400D8CEE3 /* nanopb.framework */; };
+		F181619C215E284A00D8CEE3 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619B215E284A00D8CEE3 /* FirebaseDatabase.framework */; };
+		F181619E215E284A00D8CEE3 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619D215E284A00D8CEE3 /* FirebaseStorage.framework */; };
+		F18161A0215E284A00D8CEE3 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619F215E284A00D8CEE3 /* leveldb.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1816197215E1EF400D8CEE3 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1816199215E1EF400D8CEE3 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F181619B215E284A00D8CEE3 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F181619D215E284A00D8CEE3 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F181619F215E284A00D8CEE3 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F181619C215E284A00D8CEE3 /* FirebaseDatabase.framework in Frameworks */,
+				F181619E215E284A00D8CEE3 /* FirebaseStorage.framework in Frameworks */,
+				F18161A0215E284A00D8CEE3 /* leveldb.framework in Frameworks */,
 				F1816192215E1EF400D8CEE3 /* FirebaseAuth.framework in Frameworks */,
 				F1816194215E1EF400D8CEE3 /* FirebaseCore.framework in Frameworks */,
 				F1816196215E1EF400D8CEE3 /* GoogleUtilities.framework in Frameworks */,
@@ -95,6 +104,9 @@
 		93371DAF61980DDF78C8966C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F181619B215E284A00D8CEE3 /* FirebaseDatabase.framework */,
+				F181619D215E284A00D8CEE3 /* FirebaseStorage.framework */,
+				F181619F215E284A00D8CEE3 /* leveldb.framework */,
 				F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */,
 				F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */,
 				F1816195215E1EF400D8CEE3 /* GoogleUtilities.framework */,
