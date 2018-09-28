@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DZ3-sd-L2t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xS3-AM-j9M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,6 +64,9 @@
                                                                 <state key="normal" title="Submit">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="submitButtonClicked" destination="DZ3-sd-L2t" eventType="touchUpInside" id="Kz9-rQ-mVd"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,10 +123,15 @@
                         <viewLayoutGuide key="safeArea" id="gEf-oe-v5S"/>
                     </view>
                     <navigationItem key="navigationItem" id="gu4-yc-6cU"/>
+                    <connections>
+                        <outlet property="submitButton" destination="L9y-Xl-9r6" id="cak-9V-E1f"/>
+                        <outlet property="usernameTxt" destination="3PI-3C-fWs" id="Qne-14-Sit"/>
+                        <segue destination="IVP-TR-3vg" kind="push" identifier="AvailableUsersViewController" id="gy5-uX-7wN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="182-IY-Mf8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3837.5999999999999" y="141.67916041979012"/>
+            <point key="canvasLocation" x="4776.8000000000002" y="141.67916041979012"/>
         </scene>
         <!--GameLevelsViewController-->
         <scene sceneID="CWa-hQ-RED">
@@ -180,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7N9-AJ-ZIz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3837.5999999999999" y="141.67916041979012"/>
+            <point key="canvasLocation" x="4776.8000000000002" y="141.67916041979012"/>
         </scene>
         <!--GameBoardViewController-->
         <scene sceneID="5bq-Rt-oaa">
@@ -237,12 +245,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaP-AI-4hA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3837.5999999999999" y="141.67916041979012"/>
+            <point key="canvasLocation" x="4776.8000000000002" y="141.67916041979012"/>
         </scene>
         <!--Available Online user View Controller-->
         <scene sceneID="cWu-F5-kQm">
             <objects>
-                <viewController id="IVP-TR-3vg" userLabel="Available Online user View Controller" customClass="ViewController" customModule="Hackhathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AvailableUsersViewController" id="IVP-TR-3vg" userLabel="Available Online user View Controller" customClass="AvailableUsersViewController" customModule="Hackhathon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="By0-SF-7ua">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,6 +263,17 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="603" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-d8-cFw" userLabel="ContentView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abp-TC-cTo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="IVP-TR-3vg" id="fCK-CZ-6WE"/>
+                                                            <outlet property="delegate" destination="IVP-TR-3vg" id="ueG-dt-ys2"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="667" placeholder="YES" id="a1g-3U-JYS"/>
@@ -291,28 +310,31 @@
                         <viewLayoutGuide key="safeArea" id="OBH-5X-cMb"/>
                     </view>
                     <navigationItem key="navigationItem" id="FDI-V0-a5R"/>
+                    <connections>
+                        <outlet property="availableTableView" destination="abp-TC-cTo" id="lKi-76-Lhk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0x-kG-BrW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3837.5999999999999" y="141.67916041979012"/>
+            <point key="canvasLocation" x="5716" y="130.88455772113943"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Q3M-H3-1fO">
+        <scene sceneID="47f-mW-IQR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1A0-hH-PZA" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xS3-AM-j9M" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hRG-p2-TUT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uIp-FB-VxK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DZ3-sd-L2t" kind="relationship" relationship="rootViewController" id="ANo-Xt-bir"/>
+                        <segue destination="DZ3-sd-L2t" kind="relationship" relationship="rootViewController" id="73Q-aq-1jL"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ahv-o6-OdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jhT-nS-y9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2898.4000000000001" y="141.67916041979012"/>
+            <point key="canvasLocation" x="3837.5999999999999" y="141.67916041979012"/>
         </scene>
     </scenes>
     <resources>
