@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DZ3-sd-L2t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1A0-hH-PZA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -60,6 +60,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="NCf-zb-9zd"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="submitButtonClicked" destination="DZ3-sd-L2t" eventType="touchUpInside" id="Ssj-Ie-P0d"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,6 +124,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="gu4-yc-6cU"/>
                     <connections>
+                        <outlet property="submitButton" destination="VeE-1L-fo3" id="8TP-Qx-HsH"/>
+                        <outlet property="usernameTxt" destination="c6Z-XR-3W4" id="YqO-AG-wsC"/>
                         <segue destination="IVP-TR-3vg" kind="push" identifier="AvailableUsersViewController" id="gy5-uX-7wN"/>
                     </connections>
                 </viewController>
