@@ -24,6 +24,9 @@
 		F181619C215E284A00D8CEE3 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619B215E284A00D8CEE3 /* FirebaseDatabase.framework */; };
 		F181619E215E284A00D8CEE3 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619D215E284A00D8CEE3 /* FirebaseStorage.framework */; };
 		F18161A0215E284A00D8CEE3 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F181619F215E284A00D8CEE3 /* leveldb.framework */; };
+		F18161A5215E3B5500D8CEE3 /* AvailableUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */; };
+		F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18161A7215E40C700D8CEE3 /* AvailableCell.swift */; };
+		F18161AA215E40C700D8CEE3 /* AvailableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F18161A8215E40C700D8CEE3 /* AvailableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		F181619B215E284A00D8CEE3 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F181619D215E284A00D8CEE3 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F181619F215E284A00D8CEE3 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableUsersViewController.swift; sourceTree = "<group>"; };
+		F18161A7215E40C700D8CEE3 /* AvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCell.swift; sourceTree = "<group>"; };
+		F18161A8215E40C700D8CEE3 /* AvailableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +98,13 @@
 		21767AFC215E0504009F13F0 /* Hackhathon */ = {
 			isa = PBXGroup;
 			children = (
+				F18161A6215E407800D8CEE3 /* TableCells */,
+				F18161A3215E3B2C00D8CEE3 /* ViewControllers */,
 				21767AFD215E0504009F13F0 /* AppDelegate.swift */,
+
 				21767AFF215E0504009F13F0 /* ViewController.swift */,
 				21767B2A215E3D28009F13F0 /* GameBoardViewController.swift */,
+
 				21767B01215E0504009F13F0 /* Main.storyboard */,
 				21767B07215E0505009F13F0 /* Assets.xcassets */,
 				21767B09215E0505009F13F0 /* LaunchScreen.storyboard */,
@@ -127,6 +137,24 @@
 				46518399D74E77915898C00A /* Pods-Hackhathon.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F18161A3215E3B2C00D8CEE3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				21767AFF215E0504009F13F0 /* ViewController.swift */,
+				F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F18161A6215E407800D8CEE3 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				F18161A7215E40C700D8CEE3 /* AvailableCell.swift */,
+				F18161A8215E40C700D8CEE3 /* AvailableCell.xib */,
+			);
+			path = TableCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */,
+				F18161AA215E40C700D8CEE3 /* AvailableCell.xib in Resources */,
 				F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */,
 				21767B08215E0505009F13F0 /* Assets.xcassets in Resources */,
 				21767B03215E0504009F13F0 /* Main.storyboard in Resources */,
@@ -251,7 +280,9 @@
 				21767B00215E0504009F13F0 /* ViewController.swift in Sources */,
 				21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */,
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,
+				F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */,
 				21767B06215E0504009F13F0 /* Hackhathon.xcdatamodeld in Sources */,
+				F18161A5215E3B5500D8CEE3 /* AvailableUsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
