@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2169A6EE215E6CAD00284830 /* ViewController.swift */; };
 		21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767AFD215E0504009F13F0 /* AppDelegate.swift */; };
-		21767B00215E0504009F13F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767AFF215E0504009F13F0 /* ViewController.swift */; };
 		21767B03215E0504009F13F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B01215E0504009F13F0 /* Main.storyboard */; };
 		21767B06215E0504009F13F0 /* Hackhathon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21767B04215E0504009F13F0 /* Hackhathon.xcdatamodeld */; };
 		21767B08215E0505009F13F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21767B07215E0505009F13F0 /* Assets.xcassets */; };
@@ -30,9 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2169A6EE215E6CAD00284830 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21767AFA215E0504009F13F0 /* Hackhathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackhathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21767AFD215E0504009F13F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		21767AFF215E0504009F13F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21767B02215E0504009F13F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21767B05215E0504009F13F0 /* Hackhathon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hackhathon.xcdatamodel; sourceTree = "<group>"; };
 		21767B07215E0505009F13F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,10 +101,7 @@
 				F18161A6215E407800D8CEE3 /* TableCells */,
 				F18161A3215E3B2C00D8CEE3 /* ViewControllers */,
 				21767AFD215E0504009F13F0 /* AppDelegate.swift */,
-
-				21767AFF215E0504009F13F0 /* ViewController.swift */,
 				21767B2A215E3D28009F13F0 /* GameBoardViewController.swift */,
-
 				21767B01215E0504009F13F0 /* Main.storyboard */,
 				21767B07215E0505009F13F0 /* Assets.xcassets */,
 				21767B09215E0505009F13F0 /* LaunchScreen.storyboard */,
@@ -142,7 +139,7 @@
 		F18161A3215E3B2C00D8CEE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				21767AFF215E0504009F13F0 /* ViewController.swift */,
+				2169A6EE215E6CAD00284830 /* ViewController.swift */,
 				F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */,
 			);
 			path = ViewControllers;
@@ -277,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21767B00215E0504009F13F0 /* ViewController.swift in Sources */,
+				2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */,
 				21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */,
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,
 				F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */,
