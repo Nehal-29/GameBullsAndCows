@@ -115,15 +115,17 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressPlayButton(button: UIButton) {
+          if let email = UserDefaults.standard.value(forKey: "email") as? String {
          if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
        let userinfo = self.userList[button.tag]
         let playData = ["id": "" ,
                         "isPlaying": true,
-                        "playingWithWhom": autoIDKey
+                        "playingWithWhom": autoIDKey,
+            "playingName": email
             ] as [String : Any]
         
             _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
-        }
+            } }
         self.performSegue(withIdentifier: "GameBoardViewController", sender: self)
     }
 }
