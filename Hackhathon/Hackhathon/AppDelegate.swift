@@ -76,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
         _ = Database.database().reference().child("Users").child(autoIDKey).setValue(nil)
         }
+        if let autoIDKey = UserDefaults.standard.value(forKey: "WantToPlayKey") as? String {
+            _ = Database.database().reference().child("WantToPlay").child(autoIDKey).setValue(nil)
+        }
     }
     // MARK: - Core Data stack
 

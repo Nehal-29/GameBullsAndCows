@@ -66,18 +66,35 @@ class ViewController: UIViewController {
                               "isPlaying": false
                     ] as [String : Any]
                 refArt.child(key!).setValue(userData)
-                
                 let refWantToPlay = Database.database().reference().child("WantToPlay")
                 let keyWantToPlay = refArt.childByAutoId().key
                 UserDefaults.standard.set(keyWantToPlay ?? "", forKey: "WantToPlayKey")
                 UserDefaults.standard.synchronize()
                 let playData = ["id":keyWantToPlay ?? "",
                                 "isPlaying": false,
+                                "playingWithWhom": ""
                     ] as [String : Any]
                 refWantToPlay.child(key!).setValue(playData)
+                self.addTheObserverForPlayEvent()
             }
         }
     }
+    
+    func addTheObserverForPlayEvent() {
+        if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
+            print(autoIDKey)
+            _ = Database.database().reference().child("WantToPlay").child(autoIDKey).observe(DataEventType.value, with: { (snapshot) in
+                if snapshot.childrenCount > 0 {
+                    print(snapshot)
+                    
+                    
+                    
+                }
+            }, withCancel: nil)
+            
+        }
+    }
+    
     //MARK: Submit Button Clicked
     @IBAction func submitButtonClicked() {
         loginLogicForEmailAndPassword(email: usernameTxt.text!)

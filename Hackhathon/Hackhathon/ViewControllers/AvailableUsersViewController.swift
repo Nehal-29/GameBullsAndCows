@@ -37,8 +37,10 @@ class AvailableUsersViewController: UIViewController {
         })
     }
     
+    
+    
+    
     func addTheObserverForEverySingleEvent() {
-        
         self.userList = []
         if let uid = Auth.auth().currentUser?.uid {
             _ = Database.database().reference().child("Users").child(uid).observe(DataEventType.value, with: { (snapshot) in
@@ -116,6 +118,16 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressPlayButton(button: UIButton) {
+         if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
+       let userinfo = self.userList[button.tag]
+        let playData = ["id": "" ,
+                        "isPlaying": true,
+                        "playingWithWhom": autoIDKey
+            ] as [String : Any]
         
+            _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
+        }
+
     }
 }
+

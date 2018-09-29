@@ -15,6 +15,8 @@
 		21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B09215E0505009F13F0 /* LaunchScreen.storyboard */; };
 		21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767B2A215E3D28009F13F0 /* GameBoardViewController.swift */; };
 		9375DF9BEE727B9A8084F448 /* Pods_Hackhathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */; };
+		F11E453C215F74DC00A8F281 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E453A215F74DC00A8F281 /* PlayViewController.swift */; };
+		F11E453D215F74DC00A8F281 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11E453B215F74DC00A8F281 /* PlayViewController.xib */; };
 		F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */; };
 		F1816192215E1EF400D8CEE3 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */; };
 		F1816194215E1EF400D8CEE3 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */; };
@@ -42,6 +44,8 @@
 		46518399D74E77915898C00A /* Pods-Hackhathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.release.xcconfig"; sourceTree = "<group>"; };
 		4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackhathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37C38DD4DAF3FC1A809835A /* Pods-Hackhathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.debug.xcconfig"; sourceTree = "<group>"; };
+		F11E453A215F74DC00A8F281 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		F11E453B215F74DC00A8F281 /* PlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Hackhathon/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1816191215E1EF400D8CEE3 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1816193215E1EF400D8CEE3 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +145,8 @@
 			children = (
 				2169A6EE215E6CAD00284830 /* ViewController.swift */,
 				F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */,
+				F11E453A215F74DC00A8F281 /* PlayViewController.swift */,
+				F11E453B215F74DC00A8F281 /* PlayViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 			files = (
 				21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */,
 				F18161AA215E40C700D8CEE3 /* AvailableCell.xib in Resources */,
+				F11E453D215F74DC00A8F281 /* PlayViewController.xib in Resources */,
 				F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */,
 				21767B08215E0505009F13F0 /* Assets.xcassets in Resources */,
 				21767B03215E0504009F13F0 /* Main.storyboard in Resources */,
@@ -279,6 +286,7 @@
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,
 				F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */,
 				21767B06215E0504009F13F0 /* Hackhathon.xcdatamodeld in Sources */,
+				F11E453C215F74DC00A8F281 /* PlayViewController.swift in Sources */,
 				F18161A5215E3B5500D8CEE3 /* AvailableUsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
