@@ -29,6 +29,7 @@ class GameBoardViewController: UIViewController {
         self.tableView.layer.cornerRadius = 20
         self.tableView.clipsToBounds = true
         self.tableView.tableHeaderView = self.tableHeader
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     

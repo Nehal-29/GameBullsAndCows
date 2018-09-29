@@ -15,12 +15,15 @@ class AvailableUsersViewController: UIViewController {
     @IBOutlet var availableTableView: UITableView!
     var userList: [UsersOnlineData] = []
     let cellID = "cellID"
+    var gameLevel = ""
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         availableTableView.register(UINib(nibName: "AvailableCell", bundle: nil), forCellReuseIdentifier: cellID)
         self.getDataForTheUsers()
         self.addTheObserverForEverySingleEvent()
+        self.navigationController?.navigationBar.isHidden = false
+        self.title = "Players Online"
     }
 
     func getDataForTheUsers() {
@@ -58,6 +61,8 @@ class AvailableUsersViewController: UIViewController {
             let artistGenre = artistObject?["isOnline"]
             let isPlaying = artistObject?["isPlaying"]
             let artist = UsersOnlineData(id: artistId as! String?, email: artistName as! String?, isOnline: artistGenre as! Bool?, isPlaying: isPlaying as! Bool?)
+             self.userList.append(artist)
+            
             if let email = UserDefaults.standard.value(forKey: "email") as? String {
                 if artistName as! String? != email {
                     self.userList.append(artist)
