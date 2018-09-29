@@ -86,9 +86,6 @@ class ViewController: UIViewController {
             _ = Database.database().reference().child("WantToPlay").child(autoIDKey).observe(DataEventType.value, with: { (snapshot) in
                 if snapshot.childrenCount > 0 {
                     print(snapshot)
-                    
-                    
-                    
                 }
             }, withCancel: nil)
             
