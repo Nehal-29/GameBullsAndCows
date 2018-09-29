@@ -37,9 +37,6 @@ class AvailableUsersViewController: UIViewController {
         })
     }
     
-    
-    
-    
     func addTheObserverForEverySingleEvent() {
         self.userList = []
         if let uid = Auth.auth().currentUser?.uid {
