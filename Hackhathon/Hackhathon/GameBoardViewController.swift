@@ -11,17 +11,24 @@ import UIKit
 class GameBoardViewController: UIViewController {
 
     var resultantWord = ""
-    var userInput = ""
+    var userInput = "aa"
     var cows = 0
     var bulls = 0
-    let data = ["and","Ant","pen","pan", "raam","rard"]
+    let data = ["and","Ant","pen","pan", "ram","mee"]
     
-    @IBOutlet private var userInputTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableHeader: UIView!
+    @IBOutlet private weak var userInputTextField: UITextField!
+    
+    @IBOutlet weak var headerContainerView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
         self.resultantWord = data[randomIndex]
+        self.tableView.layer.cornerRadius = 20
+        self.tableView.clipsToBounds = true
+        self.tableView.tableHeaderView = self.tableHeader
     }
     
     
@@ -68,7 +75,19 @@ extension GameBoardViewController: UITextFieldDelegate {
     }
 }
 
-extension String {
-    subscript (i: Int) -> Character {
-        return self[index(startIndex, offsetBy: i)]
-    } }
+extension GameBoardViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "attemptedAnswerCell", for: indexPath) as? AttemptedAnswerCellTableViewCell else { return AttemptedAnswerCellTableViewCell() }
+        cell.configureCell(answer: self.userInput, bulls: self.bulls, cows: self.cows)
+        return cell
+    }
+}
