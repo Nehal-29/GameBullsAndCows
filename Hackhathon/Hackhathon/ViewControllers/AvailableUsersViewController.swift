@@ -116,6 +116,6 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressPlayButton(button: UIButton) {
-        
+        self.performSegue(withIdentifier: "GameBoardViewController", sender: self)
     }
 }

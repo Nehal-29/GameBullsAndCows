@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210B4B96215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */; };
 		2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2169A6EE215E6CAD00284830 /* ViewController.swift */; };
 		21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767AFD215E0504009F13F0 /* AppDelegate.swift */; };
 		21767B03215E0504009F13F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B01215E0504009F13F0 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptedAnswerCellTableViewCell.swift; sourceTree = "<group>"; };
 		2169A6EE215E6CAD00284830 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21767AFA215E0504009F13F0 /* Hackhathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackhathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21767AFD215E0504009F13F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				F18161A7215E40C700D8CEE3 /* AvailableCell.swift */,
 				F18161A8215E40C700D8CEE3 /* AvailableCell.xib */,
+				210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */,
 				21767B06215E0504009F13F0 /* Hackhathon.xcdatamodeld in Sources */,
 				F18161A5215E3B5500D8CEE3 /* AvailableUsersViewController.swift in Sources */,
+				210B4B96215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
