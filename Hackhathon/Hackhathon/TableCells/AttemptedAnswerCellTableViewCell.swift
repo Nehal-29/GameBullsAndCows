@@ -10,9 +10,9 @@ import UIKit
 
 class AttemptedAnswerCellTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var attemptedAnswerLabel: UILabel!
-    @IBOutlet weak var cowsCount: UILabel!
-    @IBOutlet weak var bullsCount: UILabel!
+    @IBOutlet private weak var attemptedAnswerLabel: UILabel!
+    @IBOutlet private weak var cowsCount: UILabel!
+    @IBOutlet private weak var bullsCount: UILabel!
     
     
     override func awakeFromNib() {

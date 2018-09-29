@@ -124,7 +124,7 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         
             _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
         }
-        self.performSegue(withIdentifier: "GameBoardViewController", sender: self)
+        self.performSegue(withIdentifier: "GameLevelViewController", sender: self)
     }
 }
 
