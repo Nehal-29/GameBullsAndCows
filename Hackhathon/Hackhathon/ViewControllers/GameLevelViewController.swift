@@ -14,9 +14,4 @@ class GameLevelViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func easyLevel(_ sender: Any) {
-        self.performSegue(withIdentifier: "GameBoardViewController", sender: self)
-    }
-    
-   
 }

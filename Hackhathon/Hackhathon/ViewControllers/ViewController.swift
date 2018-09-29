@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     //MARK: Submit Button Clicked
     @IBAction func submitButtonClicked() {
         loginLogicForEmailAndPassword(email: usernameTxt.text!)
-        self.performSegue(withIdentifier: "AvailableUsersViewController", sender: self)
+        self.performSegue(withIdentifier: "GameLevelViewController", sender: self)
     }
 }
 
