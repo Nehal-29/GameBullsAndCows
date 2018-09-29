@@ -21,7 +21,7 @@ class GameLevelViewController: UIViewController {
     }
     
     @IBAction func hardButton(_ sender: Any) {
-        self.gameLevel = "easy"
+        self.gameLevel = "hard"
 
     }
     
@@ -32,7 +32,7 @@ class GameLevelViewController: UIViewController {
     }
     
     @IBAction func easyButton(_ sender: Any) {
-        self.gameLevel = "hard"
+        self.gameLevel = "easy"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

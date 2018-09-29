@@ -150,11 +150,11 @@
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="603" translatesAutoresizingMaskIntoConstraints="NO" id="aV3-gq-X3a" userLabel="ContentView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6An-DN-38T">
-                                                        <rect key="frame" x="15" y="30" width="345" height="90"/>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="340" placeholderIntrinsicHeight="49" translatesAutoresizingMaskIntoConstraints="NO" id="6An-DN-38T">
+                                                        <rect key="frame" x="25" y="70" width="335" height="52"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVv-7E-9hO">
-                                                                <rect key="frame" x="30" y="30" width="285" height="30"/>
+                                                                <rect key="frame" x="0.0" y="10.5" width="205" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -162,18 +162,33 @@
                                                                     <outlet property="delegate" destination="dLI-wR-6CJ" id="a2s-3k-ind"/>
                                                                 </connections>
                                                             </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wf8-eO-nCJ">
+                                                                <rect key="frame" x="232" y="9.5" width="70" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="70" id="D99-nT-rMw"/>
+                                                                    <constraint firstAttribute="height" constant="30" id="Sbi-i1-ZKU"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="gameAction:" destination="dLI-wR-6CJ" eventType="touchUpInside" id="L5j-a4-MI2"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="centerX" secondItem="6An-DN-38T" secondAttribute="centerX" id="6zv-l6-KLV"/>
-                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="top" secondItem="6An-DN-38T" secondAttribute="top" constant="30" id="QZn-D6-zgB"/>
-                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="centerY" secondItem="6An-DN-38T" secondAttribute="centerY" id="Udz-4e-e4w"/>
-                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="leading" secondItem="6An-DN-38T" secondAttribute="leading" constant="30" id="zh0-zi-D8w"/>
+                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="centerY" secondItem="6An-DN-38T" secondAttribute="centerY" id="AFc-VG-t87"/>
+                                                            <constraint firstItem="wf8-eO-nCJ" firstAttribute="centerY" secondItem="6An-DN-38T" secondAttribute="centerY" constant="-1.5" id="GSI-rJ-pTy"/>
+                                                            <constraint firstAttribute="trailing" secondItem="wf8-eO-nCJ" secondAttribute="trailing" constant="33" id="m6k-2e-VHH"/>
+                                                            <constraint firstItem="wf8-eO-nCJ" firstAttribute="leading" secondItem="NVv-7E-9hO" secondAttribute="trailing" constant="27" id="n1y-fI-VW1"/>
+                                                            <constraint firstItem="NVv-7E-9hO" firstAttribute="leading" secondItem="6An-DN-38T" secondAttribute="leading" id="zh0-zi-D8w"/>
                                                         </constraints>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fMO-F2-zrx">
-                                                        <rect key="frame" x="20" y="120" width="335" height="517"/>
+                                                        <rect key="frame" x="20" y="127" width="335" height="530"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="530" id="2M7-qi-9Vw"/>
+                                                        </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="attemptedAnswerCell" id="icP-Mi-I1O" customClass="AttemptedAnswerCellTableViewCell" customModule="Hackhathon" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="335" height="44"/>
@@ -272,14 +287,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.65098039215686276" green="0.50196078431372548" blue="0.39215686274509803" alpha="0.97565282534246578" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="fMO-F2-zrx" secondAttribute="bottom" constant="30" id="5hk-8n-YcO"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fMO-F2-zrx" secondAttribute="bottom" constant="10" id="5hk-8n-YcO"/>
                                                     <constraint firstAttribute="trailing" secondItem="6An-DN-38T" secondAttribute="trailing" constant="15" id="8bm-Yt-Xhb"/>
-                                                    <constraint firstItem="6An-DN-38T" firstAttribute="top" secondItem="aV3-gq-X3a" secondAttribute="top" constant="30" id="Hfv-sF-lGu"/>
+                                                    <constraint firstItem="6An-DN-38T" firstAttribute="top" secondItem="aV3-gq-X3a" secondAttribute="top" constant="70" id="Hfv-sF-lGu"/>
                                                     <constraint firstAttribute="height" constant="667" placeholder="YES" id="JlR-yI-0ef"/>
-                                                    <constraint firstItem="6An-DN-38T" firstAttribute="leading" secondItem="aV3-gq-X3a" secondAttribute="leading" constant="15" id="Vwp-UY-Sz5"/>
+                                                    <constraint firstItem="6An-DN-38T" firstAttribute="leading" secondItem="aV3-gq-X3a" secondAttribute="leading" constant="25" id="Vwp-UY-Sz5"/>
                                                     <constraint firstAttribute="trailing" secondItem="fMO-F2-zrx" secondAttribute="trailing" constant="20" id="csl-2k-VcS"/>
                                                     <constraint firstItem="fMO-F2-zrx" firstAttribute="leading" secondItem="aV3-gq-X3a" secondAttribute="leading" constant="20" id="led-Ax-i6V"/>
-                                                    <constraint firstItem="fMO-F2-zrx" firstAttribute="top" secondItem="6An-DN-38T" secondAttribute="bottom" id="thG-BQ-H7R"/>
+                                                    <constraint firstItem="fMO-F2-zrx" firstAttribute="top" secondItem="6An-DN-38T" secondAttribute="bottom" constant="5" id="thG-BQ-H7R"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -394,12 +409,12 @@
                     <viewLayoutGuide key="safeArea" id="rGN-Cz-ERe"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="7055" y="142"/>
+            <point key="canvasLocation" x="7053.6000000000004" y="141.67916041979012"/>
         </scene>
         <!--GameLevelViewController-->
         <scene sceneID="5bq-Rt-oaa">
             <objects>
-                <viewController id="IJp-Vc-Rpl" userLabel="GameLevelViewController" sceneMemberID="viewController">
+                <viewController id="IJp-Vc-Rpl" userLabel="GameLevelViewController" customClass="GameLevelViewController" customModule="Hackhathon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ali-JE-ukJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,7 +445,7 @@
                                                                 <rect key="frame" x="0.0" y="75" width="300" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
-                                                                    <action selector="easyButton:" destination="Cnk-ek-2a1" eventType="touchUpInside" id="Jos-cw-wFw"/>
+                                                                    <action selector="easyButton:" destination="IJp-Vc-Rpl" eventType="touchUpInside" id="peD-oV-lgg"/>
                                                                     <segue destination="IVP-TR-3vg" kind="show" id="miD-z7-xDc"/>
                                                                 </connections>
                                                             </button>
@@ -438,7 +453,7 @@
                                                                 <rect key="frame" x="0.0" y="175" width="300" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
-                                                                    <action selector="mediumButton:" destination="Cnk-ek-2a1" eventType="touchUpInside" id="kJY-nh-dVQ"/>
+                                                                    <action selector="mediumButton:" destination="IJp-Vc-Rpl" eventType="touchUpInside" id="B6j-VI-i5i"/>
                                                                     <segue destination="IVP-TR-3vg" kind="show" id="bU5-iR-l3A"/>
                                                                 </connections>
                                                             </button>
@@ -446,7 +461,7 @@
                                                                 <rect key="frame" x="0.0" y="275" width="300" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
-                                                                    <action selector="hardButton:" destination="Cnk-ek-2a1" eventType="touchUpInside" id="ogi-Og-Ueg"/>
+                                                                    <action selector="hardButton:" destination="IJp-Vc-Rpl" eventType="touchUpInside" id="XqO-Rt-5YY"/>
                                                                     <segue destination="IVP-TR-3vg" kind="show" id="amT-7X-3b0"/>
                                                                 </connections>
                                                             </button>
@@ -513,7 +528,6 @@
                     <navigationItem key="navigationItem" id="Fpk-3z-43A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaP-AI-4hA" sceneMemberID="firstResponder"/>
-                <exit id="Cnk-ek-2a1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5477.6000000000004" y="141.67916041979012"/>
         </scene>

@@ -119,6 +119,13 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? GameBoardViewController else {
+            return
+        }
+        destination.gameLevel = self.gameLevel
+    }
+    
     @objc func pressPlayButton(button: UIButton) {
          if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
        let userinfo = self.userList[button.tag]
