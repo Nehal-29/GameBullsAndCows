@@ -23,6 +23,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     var attemptsTaken = 0
     var results = [Score]()
     let cellID = "cellID"
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var levelIndicator: UILabel!
     @IBOutlet weak var checkButton: UIButton!
@@ -31,6 +32,8 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+        self.resultantWord = data[randomIndex]
         if isGuesser == "isGuesser" {
             self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
             self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
@@ -68,7 +71,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
                         let playingWithWhom = snapValue["choosenWord"] as! String
                         if playingWithWhom != "" {
                             DispatchQueue.main.async {
-                                //let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+                                let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
                                 self.resultantWord = playingWithWhom
                             }
                         }
@@ -102,7 +105,6 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
             let cows = artistObject?["cows"]
             let scoreObj = Score.init(answer: answer as! String, bulls: bulls as! Int , cows: cows as! Int)
             self.results.append(scoreObj)
-        
         }
         
     }
