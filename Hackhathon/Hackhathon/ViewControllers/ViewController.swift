@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             cancelButton.titleLabel?.textColor = UIColor.white
             cancelButton.setTitle("Cancel", for: .normal)
             cancelButton.addTarget(self, action: #selector(cancelButtonClicked(sender:)), for: .touchUpInside)
-             playView.addSubview(cancelButton)
+            playView.addSubview(cancelButton)
         }
         
         UIApplication.shared.keyWindow!.addSubview(playView)

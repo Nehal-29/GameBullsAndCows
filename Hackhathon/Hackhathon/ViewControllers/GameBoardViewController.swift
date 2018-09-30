@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     var resultantWord = ""
@@ -19,11 +22,11 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     var attemptsTaken = 0
     var results = [Score]()
     let cellID = "cellID"
-    @IBOutlet weak var headerView: UIView!
+    @IBOutlet var headerView: UIView!
     @IBOutlet weak var levelIndicator: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet private weak var userInputTextField: UITextField!
+    @IBOutlet var userInputTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
@@ -33,6 +36,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         self.data = Data.dataDictionary(gameLevel: self.gameLevel)
         let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
         self.resultantWord = data[randomIndex]
+        print(self.resultantWord)
         self.tableView.layer.cornerRadius = 20
         self.tableView.clipsToBounds = true
         self.tableView.register(UINib.init(nibName: "AttemptedAnswerCellTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
@@ -43,6 +47,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
         self.userInputTextField.keyboardType = .asciiCapable
         self.userInputTextField.autocorrectionType = .no
+        addObserverForTheWin()
     }
 
     
@@ -75,6 +80,8 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         if self.attemptsTaken <= 10 {
             self.bullsAndCowsLogic(inputString: self.userInput)
             if self.bulls == self.endGame() {
+                notifyTheOtherUser()
+                
                 let alert = UIAlertController(title: "Woah! Answer is \(self.resultantWord)", message: "Winner Winner Chicken Dinner", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
                     if let controllers = self.navigationController?.viewControllers {
@@ -96,6 +103,36 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         self.resetData()
     }
     
+    func addObserverForTheWin() {
+        _ = Database.database().reference().child("NotifyWinner").observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                if let snapValue = snapshot.value as? [String: Any] {
+                    let string = snapValue["winner"] as! String
+                    let alert = UIAlertController(title: "Winner!", message: string, preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                        if let controllers = self.navigationController?.viewControllers {
+                            self.navigationController?.popToViewController(controllers[1], animated: true) }
+                    }))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }, withCancel:nil)
+
+    }
+    
+    func notifyTheOtherUser() {
+        if let emailName = UserDefaults.standard.value(forKey: "email") as? String {
+            let refArt = Database.database().reference().child("NotifyWinner")
+            let value = ["winner": emailName]
+            refArt.setValue(value)
+        }
+        
+    }
     
     private func bullsAndCowsLogic(inputString: String) {
         
