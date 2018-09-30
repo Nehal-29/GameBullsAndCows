@@ -124,6 +124,8 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         if let email = UserDefaults.standard.value(forKey: "email") as? String {
         if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
         let userinfo = self.userList[button.tag]
+        UserDefaults.standard.set(userinfo.id!, forKey: "playingWithWhom")
+        UserDefaults.standard.synchronize()
         let playData = ["id": "" ,
                         "isPlaying": true,
                         "playingWithWhom": autoIDKey,

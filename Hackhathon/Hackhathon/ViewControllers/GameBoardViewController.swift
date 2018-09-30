@@ -35,13 +35,14 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
             self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
             self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
             self.getDataDetails()
-            self.userInputTextField.isEnabled = false
+             self.userInputTextField.isEnabled = true
+            
         } else {
             if let userString = UserDefaults.standard.value(forKey: "choosedWord") as? String {
                 self.levelIndicator.text = "You choosed this word " + userString
                 self.resultantWord = userString
-                self.addObserverForTheData()
-                self.userInputTextField.isEnabled = true
+                self.observeDataToReflect()
+                self.userInputTextField.isEnabled = false
             }
         }
         if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
@@ -78,28 +79,45 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         }
     }
     
-    func addDataTOReflect() {
-        // let refGame = Database.database().reference().child("PlayDetailsData")
-        
+    func observeDataToReflect() {
+        if let playinWithWHom = UserDefaults.standard.value(forKey: "playingWithWhom") as? String {
+            let refGame = Database.database().reference().child("PlayDetailsData").child(playinWithWHom)
+            refGame.observe(DataEventType.childAdded, with: { (snapshot) in
+                if snapshot.childrenCount > 0 {
+                    self.results = []
+                    self.createDataModelForTheAvailableSnapShot(snapshot: snapshot)
+                }
+                self.tableView.reloadData()
+            }, withCancel: nil)
+        }
+      
         
     }
     
-    func addObserverForTheData() {
-//         //jj
-//        var answer: String
-//        var bulls: Int
-//        var cows:Int
-//
-//        let refGame = Database.database().reference().child("PlayDetails")
-//        if let autoId = UserDefaults.standard.value(forKey: "AutoID") as? String {
-//            let userData = ["id": autoId, "choosenWord": string]
-//            refGame.child(autoId).setValue(userData)
-//        }
+    func createDataModelForTheAvailableSnapShot(snapshot: DataSnapshot) {
+        for artists in snapshot.children.allObjects as! [DataSnapshot] {
+            let artistObject = artists.value as? [String: AnyObject]
+            let answer  = artistObject?["answer"]
+            let bulls  = artistObject?["bulls"]
+            let cows = artistObject?["cows"]
+            let scoreObj = Score.init(answer: answer as! String, bulls: bulls as! Int , cows: cows as! Int)
+            self.results.append(scoreObj)
         
+        }
+        
+    }
+    
+    func addObserverForTheData(element: Score) {
+        if let playing = UserDefaults.standard.value(forKey: "AutoID") as? String {
+            let refGame = Database.database().reference().child("PlayDetailsData").child(playing)
+            let value = ["answer": element.answer, "bulls" : element.bulls, "cows": element.cows] as [String : Any]
+            refGame.setValue(value)
+        }
     }
     
     private func addEntry(element: Score) {
         self.results.append(element)
+        self.addObserverForTheData(element: element)
     }
     
     private func resetData() {
