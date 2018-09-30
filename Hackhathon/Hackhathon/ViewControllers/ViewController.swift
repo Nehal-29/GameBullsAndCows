@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
         self.usernameTxt.keyboardType = .emailAddress
+        self.usernameTxt.autocorrectionType = .no
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -69,16 +70,16 @@ class ViewController: UIViewController {
             }
             if let _ = Auth.auth().currentUser {
                 let refArt = Database.database().reference().child("Users")
-                let key = refArt.childByAutoId().key
+                let key = refArt.childByAutoId().key ?? ""
                 UserDefaults.standard.set(email, forKey: "email")
-                UserDefaults.standard.set(key ?? "", forKey: "AutoID")
+                UserDefaults.standard.set(key, forKey: "AutoID")
                 UserDefaults.standard.synchronize()
-                let userData = ["id":key ?? "",
+                let userData = ["id":key,
                                 "Email": email,
                                 "isOnline": true,
                                 "isPlaying": false
                     ] as [String : Any]
-                refArt.child(key!).setValue(userData)
+                refArt.child(key).setValue(userData)
                 let refWantToPlay = Database.database().reference().child("WantToPlay")
                 let keyWantToPlay = refArt.childByAutoId().key
                 UserDefaults.standard.set(keyWantToPlay ?? "", forKey: "WantToPlayKey")
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
                                 "playingWithWhom": "",
                                  "playingName": ""
                     ] as [String : Any]
-                refWantToPlay.child(key!).setValue(playData)
+                refWantToPlay.child(key).setValue(playData)
                 self.addTheObserverForPlayEvent()
             }
         }
@@ -118,16 +119,15 @@ class ViewController: UIViewController {
             cancelButton.addTarget(self, action: #selector(cancelButtonClicked(sender:)), for: .touchUpInside)
              playView.addSubview(cancelButton)
         }
-        
-        UIApplication.shared.keyWindow!.addSubview(playView)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(self.playView)
+        }
     }
     
     @objc func playButtonClicked(sender: UIButton) {
         DispatchQueue.main.async {
            self.playView.removeFromSuperview()
-            //changes for segue
-//            let gameBoardVCobj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-//            self.navigationController?.pushViewController(gameBoardVCobj, animated: true)
+            self.performSegue(withIdentifier: "VCToGameBoard", sender: self)
         }
     }
     
@@ -145,8 +145,8 @@ class ViewController: UIViewController {
                 if snapshot.childrenCount > 0 {
                     print(snapshot)
                     if let snapValue = snapshot.value as? [String: Any] {
-                        let playingWithWhom = snapValue["playingWithWhom"] as! String
-                        let playingName = snapValue["playingName"] as! String
+                        let playingWithWhom = snapValue["playingWithWhom"] as? String ?? ""
+                        let playingName = snapValue["playingName"] as? String ?? ""
                         UserDefaults.standard.set(playingWithWhom, forKey: "playingWithWhom")
                         UserDefaults.standard.set(playingName, forKey: "playingName")
                         UserDefaults.standard.synchronize()
@@ -182,8 +182,9 @@ class ViewController: UIViewController {
     
     //MARK: Submit Button Clicked
     @IBAction func submitButtonClicked() {
-        if isValidEmail(testStr: usernameTxt.text!) {
-            loginLogicForEmailAndPassword(email: usernameTxt.text!)
+        
+        if let text = self.usernameTxt.text, isValidEmail(testStr: text) {
+            self.loginLogicForEmailAndPassword(email: text)
             self.performSegue(withIdentifier: "GameLevelViewController", sender: self)
         } else {
             showAlert()

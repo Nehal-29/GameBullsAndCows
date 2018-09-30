@@ -33,16 +33,20 @@ class PlayViewController: UIViewController {
     
     @objc func playButtonClicked(sender: UIButton) {
         DispatchQueue.main.async {
-           UIApplication.shared.keyWindow!.viewWithTag(1)?.removeFromSuperview()
+            if let window = UIApplication.shared.keyWindow {
+                window.viewWithTag(1)?.removeFromSuperview()
+            }
         }
        
         
     }
     
    @objc func cancelButtonClicked(sender: UIButton) {
-        DispatchQueue.main.async {
-           UIApplication.shared.keyWindow!.viewWithTag(1)?.removeFromSuperview()
+    DispatchQueue.main.async {
+        if let window = UIApplication.shared.keyWindow {
+            window.viewWithTag(1)?.removeFromSuperview()
         }
+    }
         
     }
 

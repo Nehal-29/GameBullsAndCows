@@ -27,19 +27,20 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var userInputTextField: UITextField!
+    @IBOutlet private weak var tableHeader: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
              self.gameLevel = gamelevelStr
         }
-        self.userInputTextField.delegate = self
+        self.tableView.tableHeaderView = self.tableHeader
         self.data = Data.dataDictionary(gameLevel: self.gameLevel)
         let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
         self.resultantWord = data[randomIndex]
         print(self.resultantWord)
         self.tableView.layer.cornerRadius = 20
         self.tableView.clipsToBounds = true
-        self.tableView.register(UINib.init(nibName: "AttemptedAnswerCellTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
         self.navigationController?.navigationBar.isHidden = true
         self.checkButton.isEnabled = false
         self.checkButton.alpha = 0.5
@@ -47,7 +48,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
         self.userInputTextField.keyboardType = .asciiCapable
         self.userInputTextField.autocorrectionType = .no
-        addObserverForTheWin()
+        self.addObserverForTheWin()
     }
 
     
@@ -107,7 +108,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         _ = Database.database().reference().child("NotifyWinner").observe(DataEventType.value, with: { (snapshot) in
             if snapshot.childrenCount > 0 {
                 if let snapValue = snapshot.value as? [String: Any] {
-                    let string = snapValue["winner"] as! String
+                    let string = snapValue["winner"] as? String ?? ""
                     let alert = UIAlertController(title: "Winner!", message: string, preferredStyle: UIAlertControllerStyle.alert)
                     // add an action (button)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
@@ -191,7 +192,7 @@ extension GameBoardViewController: UITextFieldDelegate {
                 if textField.text?.count == 4 {
                     if string == "" {
                         return true
-                    }else {
+                    } else {
                         self.checkButton.isEnabled = true
                         self.checkButton.alpha = 1
                         _ = textField.resignFirstResponder()
@@ -204,7 +205,7 @@ extension GameBoardViewController: UITextFieldDelegate {
                 if textField.text?.count == 5 {
                     if string == "" {
                         return true
-                    }else {
+                    } else {
                         self.checkButton.isEnabled = true
                         self.checkButton.alpha = 1
                         _ = textField.resignFirstResponder()
@@ -237,20 +238,12 @@ extension GameBoardViewController: UITextFieldDelegate {
 
 extension GameBoardViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? AttemptedAnswerCellTableViewCell else { return AttemptedAnswerCellTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "attemptedAnswerCell", for: indexPath) as? AttemptedAnswerCellTableViewCell else { return AttemptedAnswerCellTableViewCell() }
         
         let score = self.results[indexPath.row]
         if let cellToUpdate = tableView.cellForRow(at: indexPath) as? AttemptedAnswerCellTableViewCell {

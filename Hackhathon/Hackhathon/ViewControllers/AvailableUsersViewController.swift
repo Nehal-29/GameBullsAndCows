@@ -52,22 +52,23 @@ class AvailableUsersViewController: UIViewController {
     }
     
     func createDataModelForTheAvailableSnapShot(snapshot: DataSnapshot) {
-        for artists in snapshot.children.allObjects as! [DataSnapshot] {
-            let artistObject = artists.value as? [String: AnyObject]
-            let artistName  = artistObject?["Email"]
-            let artistId  = artistObject?["id"]
-            let artistGenre = artistObject?["isOnline"]
-            let isPlaying = artistObject?["isPlaying"]
-            let artist = UsersOnlineData(id: artistId as! String?, email: artistName as! String?, isOnline: artistGenre as! Bool?, isPlaying: isPlaying as! Bool?)
+        if let objects = snapshot.children.allObjects as? [DataSnapshot] {
+            for artists in objects {
+                guard let artistObject = artists.value as? [String: AnyObject] else { return}
+                let artistName  = artistObject["Email"] as? String ?? ""
+                let artistId  = artistObject["id"] as? String ?? ""
+                let artistGenre = artistObject["isOnline"] as? Bool
+                let isPlaying = artistObject["isPlaying"] as? Bool
+                let artist = UsersOnlineData(id: artistId, email: artistName, isOnline: artistGenre, isPlaying: isPlaying)
              self.userList.append(artist)
             
             if let email = UserDefaults.standard.value(forKey: "email") as? String {
-                if artistName as! String? != email {
+                if artistName != email {
                     self.userList.append(artist)
                 }
             }
         }
-        
+      }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +98,7 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         cell.isonlineLbl.layer.cornerRadius = cell.isonlineLbl.frame.width/2
         cell.letsPlay.tag = indexPath.row
         
-        if userInfo.isOnline! {
+        if let online = userInfo.isOnline, online {
           cell.letsPlay.alpha = 1.0
           cell.letsPlay.isEnabled = true
           cell.isonlineLbl.backgroundColor = UIColor.green
@@ -106,7 +107,7 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
            cell.letsPlay.isEnabled = false
            cell.isonlineLbl.backgroundColor = UIColor.red
         }
-        if userInfo.isPlaying! {
+        if let isPlaying = userInfo.isPlaying, isPlaying {
             cell.letsPlay.alpha = 0.8
             cell.letsPlay.isEnabled = false
             cell.letsPlay.setTitle("Playing", for: .normal)
@@ -121,10 +122,11 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressPlayButton(button: UIButton) {
-        if let email = UserDefaults.standard.value(forKey: "email") as? String {
-        if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
+        if let email = UserDefaults.standard.value(forKey: "email") as? String,
+           let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
         let userinfo = self.userList[button.tag]
-        UserDefaults.standard.set(userinfo.id!, forKey: "playingWithWhom")
+        let id = userinfo.id ?? ""
+        UserDefaults.standard.set(id, forKey: "playingWithWhom")
         UserDefaults.standard.synchronize()
         let playData = ["id": "" ,
                         "isPlaying": true,
@@ -132,12 +134,11 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
                         "playingName": email
             ] as [String : Any]
         
-            _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
-            }
+            _ = Database.database().reference().child("WantToPlay").child(id).updateChildValues(playData)
+            
         }
- //changes for segue
-//        let gameBoardObj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-//        self.navigationController?.pushViewController(gameBoardObj, animated: true)
+        
+        self.performSegue(withIdentifier: "AvailableToGameBoard", sender: self)
     }
 }
 
