@@ -18,6 +18,10 @@
 		21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B09215E0505009F13F0 /* LaunchScreen.storyboard */; };
 		21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767B2A215E3D28009F13F0 /* GameBoardViewController.swift */; };
 		9375DF9BEE727B9A8084F448 /* Pods_Hackhathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */; };
+		F10E0DE221608C690090A72F /* GameBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE121608C690090A72F /* GameBoardViewController.xib */; };
+		F10E0DE4216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE3216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib */; };
+		F10E0DE721609D940090A72F /* ChooseStringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E0DE521609D940090A72F /* ChooseStringVC.swift */; };
+		F10E0DE821609D940090A72F /* ChooseStringVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE621609D940090A72F /* ChooseStringVC.xib */; };
 		F11E453C215F74DC00A8F281 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E453A215F74DC00A8F281 /* PlayViewController.swift */; };
 		F11E453D215F74DC00A8F281 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11E453B215F74DC00A8F281 /* PlayViewController.xib */; };
 		F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */; };
@@ -50,6 +54,10 @@
 		46518399D74E77915898C00A /* Pods-Hackhathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.release.xcconfig"; sourceTree = "<group>"; };
 		4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackhathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37C38DD4DAF3FC1A809835A /* Pods-Hackhathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.debug.xcconfig"; sourceTree = "<group>"; };
+		F10E0DE121608C690090A72F /* GameBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameBoardViewController.xib; sourceTree = "<group>"; };
+		F10E0DE3216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttemptedAnswerCellTableViewCell.xib; sourceTree = "<group>"; };
+		F10E0DE521609D940090A72F /* ChooseStringVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseStringVC.swift; sourceTree = "<group>"; };
+		F10E0DE621609D940090A72F /* ChooseStringVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseStringVC.xib; sourceTree = "<group>"; };
 		F11E453A215F74DC00A8F281 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		F11E453B215F74DC00A8F281 /* PlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Hackhathon/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -151,10 +159,13 @@
 			children = (
 				2169A6EE215E6CAD00284830 /* ViewController.swift */,
 				21767B2A215E3D28009F13F0 /* GameBoardViewController.swift */,
+				F10E0DE121608C690090A72F /* GameBoardViewController.xib */,
 				F18161A4215E3B5500D8CEE3 /* AvailableUsersViewController.swift */,
 				F11E453A215F74DC00A8F281 /* PlayViewController.swift */,
 				F11E453B215F74DC00A8F281 /* PlayViewController.xib */,
 				210B4B97215F49970036A58D /* GameLevelViewController.swift */,
+				F10E0DE521609D940090A72F /* ChooseStringVC.swift */,
+				F10E0DE621609D940090A72F /* ChooseStringVC.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 				F18161A7215E40C700D8CEE3 /* AvailableCell.swift */,
 				F18161A8215E40C700D8CEE3 /* AvailableCell.xib */,
 				210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */,
+				F10E0DE3216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -229,12 +241,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10E0DE4216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib in Resources */,
 				21767B0B215E0505009F13F0 /* LaunchScreen.storyboard in Resources */,
 				F18161AA215E40C700D8CEE3 /* AvailableCell.xib in Resources */,
 				F11E453D215F74DC00A8F281 /* PlayViewController.xib in Resources */,
 				F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */,
 				21767B08215E0505009F13F0 /* Assets.xcassets in Resources */,
 				21767B03215E0504009F13F0 /* Main.storyboard in Resources */,
+				F10E0DE821609D940090A72F /* ChooseStringVC.xib in Resources */,
+				F10E0DE221608C690090A72F /* GameBoardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */,
+				F10E0DE721609D940090A72F /* ChooseStringVC.swift in Sources */,
 				210B4B98215F49970036A58D /* GameLevelViewController.swift in Sources */,
 				21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */,
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,

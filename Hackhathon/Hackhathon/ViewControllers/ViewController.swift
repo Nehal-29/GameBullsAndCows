@@ -25,12 +25,14 @@ class UsersOnlineData: NSObject {
     }
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var usernameTxt: UITextField!
     @IBOutlet var submitButton: UIButton!
+    var playView: UIView = UIView.init()
     override func viewDidLoad() {
         super.viewDidLoad()
+        usernameTxt.delegate = self
         self.navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -81,25 +83,108 @@ class ViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func createPlayView() {
+        let playViewCon = UIView.init()
+        playViewCon.frame.size = CGSize(width: 300, height: 150)
+        playViewCon.center = self.view.center
+        playViewCon.tag = 1
+        playViewCon.backgroundColor = UIColor.brown
+        playView = playViewCon
+        let label = UILabel.init(frame: CGRect(x: 0, y: 0, width: playViewCon.frame.width, height: 40 ))
+        if let playingName = UserDefaults.standard.value(forKey: "playingName") as? String {
+            label.text = "Wants to play with " + playingName + " ?"
+            label.lineBreakMode = .byWordWrapping
+            label.numberOfLines = 0
+            playView.addSubview(label)
+            let playButton = UIButton.init(frame: CGRect(x: 5, y: 45, width: 60, height: 50))
+            playButton.setTitle("Play", for: .normal)
+            playButton.titleLabel?.textColor = UIColor.white
+            playButton.addTarget(self, action: #selector(playButtonClicked(sender:)), for: .touchUpInside)
+            playView.addSubview(playButton)
+            let cancelButton = UIButton.init(frame: CGRect(x: self.playView.frame.width - 65, y: 45, width: 60, height: 50))
+            cancelButton.titleLabel?.textColor = UIColor.white
+            cancelButton.setTitle("Cancel", for: .normal)
+            cancelButton.addTarget(self, action: #selector(cancelButtonClicked(sender:)), for: .touchUpInside)
+             playView.addSubview(cancelButton)
+        }
+        
+        UIApplication.shared.keyWindow!.addSubview(playView)
+    }
+    
+    @objc func playButtonClicked(sender: UIButton) {
+        DispatchQueue.main.async {
+           self.playView.removeFromSuperview()
+            let gameBoardVCobj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
+            gameBoardVCobj.isGuesser = "isGuesser"
+            self.navigationController?.pushViewController(gameBoardVCobj, animated: true)
+        }
+        
+        
+    }
+    
+    @objc func cancelButtonClicked(sender: UIButton) {
+        DispatchQueue.main.async {
+            self.playView.removeFromSuperview()
+        }
+        
+    }
+    
     func addTheObserverForPlayEvent() {
+        
         if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
-            print(autoIDKey)
             _ = Database.database().reference().child("WantToPlay").child(autoIDKey).observe(DataEventType.value, with: { (snapshot) in
                 if snapshot.childrenCount > 0 {
                     print(snapshot)
-                    print(snapshot.children.allObjects as! [DataSnapshot])
-                    let snapShotArray = snapshot.children.allObjects as! [DataSnapshot]
-                    print(snapShotArray[0])
+                    if let snapValue = snapshot.value as? [String: Any] {
+                        let playingWithWhom = snapValue["playingWithWhom"] as! String
+                        let playingName = snapValue["playingName"] as! String
+                        UserDefaults.standard.set(playingWithWhom, forKey: "playingWithWhom")
+                        UserDefaults.standard.set(playingName, forKey: "playingName")
+                        UserDefaults.standard.synchronize()
+                        if playingWithWhom != "" {
+                            DispatchQueue.main.async {
+                                self.createPlayView()
+                            }
+                        }
+                    }
                 }
             }, withCancel: nil)
-            
         }
+        
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Alert!", message: "Wrong Email ID", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     
     //MARK: Submit Button Clicked
     @IBAction func submitButtonClicked() {
-        loginLogicForEmailAndPassword(email: usernameTxt.text!)
-        self.performSegue(withIdentifier: "GameLevelViewController", sender: self)
+        if isValidEmail(testStr: usernameTxt.text!) {
+            loginLogicForEmailAndPassword(email: usernameTxt.text!)
+            self.performSegue(withIdentifier: "GameLevelViewController", sender: self)
+        } else {
+            showAlert()
+        }
+        
     }
 }
 

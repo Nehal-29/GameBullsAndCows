@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="cancelButton" destination="lj6-nw-KHX" id="cCC-qJ-1vt"/>
                 <outlet property="playButton" destination="oIw-It-XfS" id="ohe-5p-c3r"/>
+                <outlet property="playWithlbl" destination="8HO-e5-rLF" id="9sc-xz-LW1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,10 +23,10 @@
             <rect key="frame" x="0.0" y="0.0" width="340" height="101"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wants to play?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HO-e5-rLF">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wants to play with ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HO-e5-rLF">
                     <rect key="frame" x="26" y="7" width="279" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="14"/>
                     <color key="textColor" red="1" green="0.62117402044096903" blue="0.22284275748426197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -36,9 +37,6 @@
                     <state key="normal" title="PLAY">
                         <color key="titleColor" red="1" green="0.62117402040000003" blue="0.22284275749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <connections>
-                        <action selector="playButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="7NB-kN-9rK"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lj6-nw-KHX">
                     <rect key="frame" x="43" y="57" width="67" height="34"/>
@@ -47,9 +45,6 @@
                     <state key="normal" title="Cancel">
                         <color key="titleColor" red="1" green="0.62117402040000003" blue="0.22284275749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <connections>
-                        <action selector="cancelButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="duE-M2-Cx3"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

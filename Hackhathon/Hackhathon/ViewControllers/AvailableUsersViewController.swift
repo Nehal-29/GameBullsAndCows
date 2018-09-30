@@ -96,7 +96,7 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         cell.isonlineLbl.layer.masksToBounds = true
         cell.isonlineLbl.layer.cornerRadius = cell.isonlineLbl.frame.width/2
         cell.letsPlay.tag = indexPath.row
-        cell.letsPlay.addTarget(self, action: #selector(self.pressPlayButton(button:)), for: .touchUpInside)
+        
         if userInfo.isOnline! {
           cell.letsPlay.alpha = 1.0
           cell.letsPlay.isEnabled = true
@@ -109,36 +109,31 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
         if userInfo.isPlaying! {
             cell.letsPlay.alpha = 0.8
             cell.letsPlay.isEnabled = false
-         cell.letsPlay.setTitle("Playing", for: .normal)
+            cell.letsPlay.setTitle("Playing", for: .normal)
         } else {
             cell.letsPlay.alpha = 1.0
             cell.letsPlay.isEnabled = true
             cell.letsPlay.setTitle("Play", for: .normal)
+            cell.letsPlay.addTarget(self, action: #selector(self.pressPlayButton(button:)), for: .touchUpInside)
         }
         cell.selectionStyle = .none
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? GameBoardViewController else {
-            return
-        }
-        destination.gameLevel = self.gameLevel
-    }
-    
     @objc func pressPlayButton(button: UIButton) {
-          if let email = UserDefaults.standard.value(forKey: "email") as? String {
-         if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
-       let userinfo = self.userList[button.tag]
+        if let email = UserDefaults.standard.value(forKey: "email") as? String {
+        if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
+        let userinfo = self.userList[button.tag]
         let playData = ["id": "" ,
                         "isPlaying": true,
                         "playingWithWhom": autoIDKey,
-            "playingName": email
+                        "playingName": email
             ] as [String : Any]
         
             _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
             } }
-        self.performSegue(withIdentifier: "GameBoardViewController", sender: self)
+        let chooseVcObj = ChooseStringVC.init(nibName: "ChooseStringVC", bundle: nil)
+        self.navigationController?.pushViewController(chooseVcObj, animated: true)
     }
 }
 

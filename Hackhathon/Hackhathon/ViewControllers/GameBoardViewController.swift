@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class GameBoardViewController: UIViewController, UIAlertViewDelegate {
-
+    var isGuesser: String = ""
     var resultantWord = ""
     var userInput = ""
     var cows = 0
@@ -19,27 +22,80 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     let maxAttempts = 10
     var attemptsTaken = 0
     var results = [Score]()
-    
+    let cellID = "cellID"
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var levelIndicator: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet private weak var tableHeader: UIView!
     @IBOutlet private weak var userInputTextField: UITextField!
     
-    @IBOutlet weak var headerContainerView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isGuesser == "isGuesser" {
+            self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
+            self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
+            self.getDataDetails()
+            self.userInputTextField.isEnabled = false
+        } else {
+            if let userString = UserDefaults.standard.value(forKey: "choosedWord") as? String {
+                self.levelIndicator.text = "You choosed this word " + userString
+                self.resultantWord = userString
+                self.addObserverForTheData()
+                self.userInputTextField.isEnabled = true
+            }
+        }
+        if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
+             self.gameLevel = gamelevelStr
+            
+        }
         
-        let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
-        self.resultantWord = data[randomIndex]
+        userInputTextField.delegate = self
         self.tableView.layer.cornerRadius = 20
         self.tableView.clipsToBounds = true
-        self.tableView.tableHeaderView = self.tableHeader
+        self.tableView.register(UINib.init(nibName: "AttemptedAnswerCellTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
         self.navigationController?.navigationBar.isHidden = true
         self.checkButton.isEnabled = false
         self.checkButton.alpha = 0.5
-        self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
-        self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
+        
+    }
+    func getDataDetails() {
+        if let key = UserDefaults.standard.value(forKey: "playingWithWhom") as? String {
+            _ = Database.database().reference().child("PlayDetails").child(key).observe(DataEventType.value, with: { (snapshot) in
+                if snapshot.childrenCount > 0 {
+                    print(snapshot)
+                    if let snapValue = snapshot.value as? [String: Any] {
+                        let playingWithWhom = snapValue["choosenWord"] as! String
+                        if playingWithWhom != "" {
+                            DispatchQueue.main.async {
+                                //let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+                                self.resultantWord = playingWithWhom
+                            }
+                        }
+                    }
+                }
+            }, withCancel: nil)
+            
+        }
+    }
+    
+    func addDataTOReflect() {
+        // let refGame = Database.database().reference().child("PlayDetailsData")
+        
+        
+    }
+    
+    func addObserverForTheData() {
+//         //jj
+//        var answer: String
+//        var bulls: Int
+//        var cows:Int
+//
+//        let refGame = Database.database().reference().child("PlayDetails")
+//        if let autoId = UserDefaults.standard.value(forKey: "AutoID") as? String {
+//            let userData = ["id": autoId, "choosenWord": string]
+//            refGame.child(autoId).setValue(userData)
+//        }
+        
     }
     
     private func addEntry(element: Score) {
@@ -163,12 +219,20 @@ extension GameBoardViewController: UITextFieldDelegate {
 
 extension GameBoardViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "attemptedAnswerCell", for: indexPath) as? AttemptedAnswerCellTableViewCell else { return AttemptedAnswerCellTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? AttemptedAnswerCellTableViewCell else { return AttemptedAnswerCellTableViewCell() }
         
         let score = self.results[indexPath.row]
         if let cellToUpdate = tableView.cellForRow(at: indexPath) as? AttemptedAnswerCellTableViewCell {
