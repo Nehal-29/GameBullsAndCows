@@ -208,6 +208,17 @@
                                                             <constraint firstItem="sLI-AC-yhX" firstAttribute="centerY" secondItem="m3O-ET-n13" secondAttribute="centerY" multiplier="0.45" id="xsc-MO-8Ir"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3g-DZ-l44">
+                                                        <rect key="frame" x="148" y="561" width="79" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                                        <state key="normal" title="LOGOUT">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="logoutbutton:" destination="IJp-Vc-Rpl" eventType="touchUpInside" id="vhJ-pU-YDO"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.65098039215686276" green="0.50196078431372548" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -251,6 +262,9 @@
                         <viewLayoutGuide key="safeArea" id="8y5-QA-Tvv"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fpk-3z-43A"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="q3g-DZ-l44" id="jq1-qf-Mcc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaP-AI-4hA" sceneMemberID="firstResponder"/>
             </objects>

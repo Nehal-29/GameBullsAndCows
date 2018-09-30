@@ -21,8 +21,6 @@
 		9375DF9BEE727B9A8084F448 /* Pods_Hackhathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B45B0105BE6D24BCB372943 /* Pods_Hackhathon.framework */; };
 		F10E0DE221608C690090A72F /* GameBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE121608C690090A72F /* GameBoardViewController.xib */; };
 		F10E0DE4216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE3216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib */; };
-		F10E0DE721609D940090A72F /* ChooseStringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E0DE521609D940090A72F /* ChooseStringVC.swift */; };
-		F10E0DE821609D940090A72F /* ChooseStringVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10E0DE621609D940090A72F /* ChooseStringVC.xib */; };
 		F11E453C215F74DC00A8F281 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E453A215F74DC00A8F281 /* PlayViewController.swift */; };
 		F11E453D215F74DC00A8F281 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11E453B215F74DC00A8F281 /* PlayViewController.xib */; };
 		F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */; };
@@ -58,8 +56,6 @@
 		D37C38DD4DAF3FC1A809835A /* Pods-Hackhathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackhathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hackhathon/Pods-Hackhathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F10E0DE121608C690090A72F /* GameBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameBoardViewController.xib; sourceTree = "<group>"; };
 		F10E0DE3216094AF0090A72F /* AttemptedAnswerCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttemptedAnswerCellTableViewCell.xib; sourceTree = "<group>"; };
-		F10E0DE521609D940090A72F /* ChooseStringVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseStringVC.swift; sourceTree = "<group>"; };
-		F10E0DE621609D940090A72F /* ChooseStringVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseStringVC.xib; sourceTree = "<group>"; };
 		F11E453A215F74DC00A8F281 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		F11E453B215F74DC00A8F281 /* PlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		F181618F215E0B1300D8CEE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Hackhathon/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -167,8 +163,6 @@
 				F11E453A215F74DC00A8F281 /* PlayViewController.swift */,
 				F11E453B215F74DC00A8F281 /* PlayViewController.xib */,
 				210B4B97215F49970036A58D /* GameLevelViewController.swift */,
-				F10E0DE521609D940090A72F /* ChooseStringVC.swift */,
-				F10E0DE621609D940090A72F /* ChooseStringVC.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -251,7 +245,6 @@
 				F1816190215E0B1300D8CEE3 /* GoogleService-Info.plist in Resources */,
 				21767B08215E0505009F13F0 /* Assets.xcassets in Resources */,
 				21767B03215E0504009F13F0 /* Main.storyboard in Resources */,
-				F10E0DE821609D940090A72F /* ChooseStringVC.xib in Resources */,
 				F10E0DE221608C690090A72F /* GameBoardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */,
-				F10E0DE721609D940090A72F /* ChooseStringVC.swift in Sources */,
 				210B4B98215F49970036A58D /* GameLevelViewController.swift in Sources */,
 				21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */,
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,

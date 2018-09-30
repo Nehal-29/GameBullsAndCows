@@ -20,8 +20,6 @@ class AvailableUsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         availableTableView.register(UINib(nibName: "AvailableCell", bundle: nil), forCellReuseIdentifier: cellID)
-        self.getDataForTheUsers()
-        self.addTheObserverForEverySingleEvent()
         self.navigationController?.navigationBar.isHidden = false
         self.title = "Players Online"
     }
@@ -74,7 +72,9 @@ class AvailableUsersViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-       
+        self.getDataForTheUsers()
+        self.addTheObserverForEverySingleEvent()
+         self.availableTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -135,8 +135,9 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
             _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
             }
         }
-        let gameBoardObj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-        self.navigationController?.pushViewController(gameBoardObj, animated: true)
+ //changes for segue
+//        let gameBoardObj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
+//        self.navigationController?.pushViewController(gameBoardObj, animated: true)
     }
 }
 

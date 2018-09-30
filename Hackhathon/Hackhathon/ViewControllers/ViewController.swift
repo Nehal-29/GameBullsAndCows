@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             cancelButton.titleLabel?.textColor = UIColor.white
             cancelButton.setTitle("Cancel", for: .normal)
             cancelButton.addTarget(self, action: #selector(cancelButtonClicked(sender:)), for: .touchUpInside)
-            playView.addSubview(cancelButton)
+             playView.addSubview(cancelButton)
         }
         
         UIApplication.shared.keyWindow!.addSubview(playView)
@@ -125,9 +125,10 @@ class ViewController: UIViewController {
     @objc func playButtonClicked(sender: UIButton) {
         DispatchQueue.main.async {
            self.playView.removeFromSuperview()
-            let gameBoardVCobj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-            self.navigationController?.pushViewController(gameBoardVCobj, animated: true)
-        }        
+            //changes for segue
+//            let gameBoardVCobj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
+//            self.navigationController?.pushViewController(gameBoardVCobj, animated: true)
+        }
     }
     
     @objc func cancelButtonClicked(sender: UIButton) {

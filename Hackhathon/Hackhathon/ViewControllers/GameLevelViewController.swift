@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class GameLevelViewController: UIViewController {
-
+    @IBOutlet var logoutButton: UIButton!
     var gameLevel = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
+    func deleteTheUser() {
+        if let autoIDKey = UserDefaults.standard.value(forKey: "AutoID") as? String {
+            _ = Database.database().reference().child("Users").child(autoIDKey).setValue(nil)
+        }
+        if let autoIDKey = UserDefaults.standard.value(forKey: "WantToPlayKey") as? String {
+            _ = Database.database().reference().child("WantToPlay").child(autoIDKey).setValue(nil)
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -25,6 +37,10 @@ class GameLevelViewController: UIViewController {
         UserDefaults.standard.set(gameStr, forKey: "gameLevel")
          UserDefaults.standard.synchronize()
         
+    }
+   @IBAction func logoutbutton(_ sender: Any) {
+        deleteTheUser()
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func hardButton(_ sender: Any) {

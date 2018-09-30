@@ -109,7 +109,6 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
                 if let snapValue = snapshot.value as? [String: Any] {
                     let string = snapValue["winner"] as! String
                     let alert = UIAlertController(title: "Winner!", message: string, preferredStyle: UIAlertControllerStyle.alert)
-                    
                     // add an action (button)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
                         if let controllers = self.navigationController?.viewControllers {
@@ -122,7 +121,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
                 
             }
         }, withCancel:nil)
-
+         _ = Database.database().reference().child("NotifyWinner").setValue(nil)
     }
     
     func notifyTheOtherUser() {
