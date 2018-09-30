@@ -7,12 +7,8 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseDatabase
 
 class GameBoardViewController: UIViewController, UIAlertViewDelegate {
-    var isGuesser: String = ""
     var resultantWord = ""
     var userInput = ""
     var cows = 0
@@ -23,103 +19,31 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
     var attemptsTaken = 0
     var results = [Score]()
     let cellID = "cellID"
-    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var levelIndicator: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var userInputTextField: UITextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
-        self.resultantWord = data[randomIndex]
-        if isGuesser == "isGuesser" {
-            self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
-            self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
-            self.getDataDetails()
-             self.userInputTextField.isEnabled = true
-            
-        } else {
-            if let userString = UserDefaults.standard.value(forKey: "choosedWord") as? String {
-                self.levelIndicator.text = "You choosed this word " + userString
-                self.resultantWord = userString
-                self.observeDataToReflect()
-                self.userInputTextField.isEnabled = false
-            }
-        }
         if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
              self.gameLevel = gamelevelStr
-            
         }
-        
         userInputTextField.delegate = self
+        let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+        self.resultantWord = data[randomIndex]
         self.tableView.layer.cornerRadius = 20
         self.tableView.clipsToBounds = true
         self.tableView.register(UINib.init(nibName: "AttemptedAnswerCellTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
         self.navigationController?.navigationBar.isHidden = true
         self.checkButton.isEnabled = false
         self.checkButton.alpha = 0.5
-        
-    }
-    func getDataDetails() {
-        if let key = UserDefaults.standard.value(forKey: "playingWithWhom") as? String {
-            _ = Database.database().reference().child("PlayDetails").child(key).observe(DataEventType.value, with: { (snapshot) in
-                if snapshot.childrenCount > 0 {
-                    print(snapshot)
-                    if let snapValue = snapshot.value as? [String: Any] {
-                        let playingWithWhom = snapValue["choosenWord"] as! String
-                        if playingWithWhom != "" {
-                            DispatchQueue.main.async {
-                                let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
-                                self.resultantWord = playingWithWhom
-                            }
-                        }
-                    }
-                }
-            }, withCancel: nil)
-            
-        }
-    }
-    
-    func observeDataToReflect() {
-        if let playinWithWHom = UserDefaults.standard.value(forKey: "playingWithWhom") as? String {
-            let refGame = Database.database().reference().child("PlayDetailsData").child(playinWithWHom)
-            refGame.observe(DataEventType.childAdded, with: { (snapshot) in
-                if snapshot.childrenCount > 0 {
-                    self.results = []
-                    self.createDataModelForTheAvailableSnapShot(snapshot: snapshot)
-                }
-                self.tableView.reloadData()
-            }, withCancel: nil)
-        }
-      
-        
-    }
-    
-    func createDataModelForTheAvailableSnapShot(snapshot: DataSnapshot) {
-        for artists in snapshot.children.allObjects as! [DataSnapshot] {
-            let artistObject = artists.value as? [String: AnyObject]
-            let answer  = artistObject?["answer"]
-            let bulls  = artistObject?["bulls"]
-            let cows = artistObject?["cows"]
-            let scoreObj = Score.init(answer: answer as! String, bulls: bulls as! Int , cows: cows as! Int)
-            self.results.append(scoreObj)
-        }
-        
-    }
-    
-    func addObserverForTheData(element: Score) {
-        if let playing = UserDefaults.standard.value(forKey: "AutoID") as? String {
-            let refGame = Database.database().reference().child("PlayDetailsData").child(playing)
-            let value = ["answer": element.answer, "bulls" : element.bulls, "cows": element.cows] as [String : Any]
-            refGame.setValue(value)
-        }
+        self.levelIndicator.text = "Maximum \(self.endGame()) characters allowed !!!"
+        self.levelIndicator.font = UIFont.boldSystemFont(ofSize: 14)
     }
     
     private func addEntry(element: Score) {
         self.results.append(element)
-        self.addObserverForTheData(element: element)
     }
     
     private func resetData() {
@@ -147,6 +71,7 @@ class GameBoardViewController: UIViewController, UIAlertViewDelegate {
         if self.attemptsTaken <= 10 {
         self.bullsAndCowsLogic(inputString: self.userInput)
             if self.bulls == self.endGame() {
+                
                 let alert = UIAlertController(title: "Woah!", message: "Winner Winner Chicken Dinner", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
             } else {

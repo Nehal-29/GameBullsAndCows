@@ -120,11 +120,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.async {
            self.playView.removeFromSuperview()
             let gameBoardVCobj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-            gameBoardVCobj.isGuesser = "isGuesser"
             self.navigationController?.pushViewController(gameBoardVCobj, animated: true)
-        }
-        
-        
+        }        
     }
     
     @objc func cancelButtonClicked(sender: UIButton) {

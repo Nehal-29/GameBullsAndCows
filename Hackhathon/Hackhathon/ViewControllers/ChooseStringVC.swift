@@ -82,7 +82,6 @@ class ChooseStringVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         UserDefaults.standard.set(string, forKey: "choosedWord")
         UserDefaults.standard.synchronize()
         let gameboard = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
-        gameboard.isGuesser = "isChooser"
         self.navigationController?.pushViewController(gameboard, animated: true)
     }
     

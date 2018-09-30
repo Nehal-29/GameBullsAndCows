@@ -133,9 +133,10 @@ extension AvailableUsersViewController: UITableViewDelegate, UITableViewDataSour
             ] as [String : Any]
         
             _ = Database.database().reference().child("WantToPlay").child(userinfo.id!).updateChildValues(playData)
-            } }
-        let chooseVcObj = ChooseStringVC.init(nibName: "ChooseStringVC", bundle: nil)
-        self.navigationController?.pushViewController(chooseVcObj, animated: true)
+            }
+        }
+        let gameBoardObj = GameBoardViewController.init(nibName: "GameBoardViewController", bundle: nil)
+        self.navigationController?.pushViewController(gameBoardObj, animated: true)
     }
 }
 
