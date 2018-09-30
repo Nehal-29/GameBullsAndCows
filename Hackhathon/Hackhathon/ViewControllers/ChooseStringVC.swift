@@ -23,44 +23,21 @@ class ChooseStringVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let gamelevelStr = UserDefaults.standard.value(forKey: "gameLevel") as? String {
             self.gameLevel = gamelevelStr
-            setTableViewDataAccordingToTheGameLevel(gameLbl: gamelevelStr)
+            self.setTableViewDataAccordingToTheGameLevel(game: gamelevelStr)
         }
-        chooseTableDataView.backgroundColor = UIColor.clear
-        chooseTableDataView.layer.backgroundColor = UIColor.clear.cgColor
+        self.chooseTableDataView.backgroundColor = UIColor.clear
+        self.chooseTableDataView.layer.backgroundColor = UIColor.clear.cgColor
         self.chooseTableDataView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         // Do any additional setup after loading the view.
     }
 
-    func setTableViewDataAccordingToTheGameLevel(gameLbl: String) {
-        switch gameLbl {
-        case "easy":
-           self.dataForEasy()
-        case "medium":
-           self.dataForMedium()
-        case "hard":
-           self.dataForHard()
-        default:
-            self.dataForEasy()
-        }
-    }
-    
-    func dataForEasy() {
-       chooseTableData = ["andy","Anty","peny","pane", "raam","meet"]
-    }
-    func dataForMedium() {
-        
-    }
-    func dataForHard() {
-        
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setTableViewDataAccordingToTheGameLevel(game: String) {
+        self.chooseTableData = Data.dataDictionary(gameLevel: game)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chooseTableData.count
+        return self.chooseTableData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

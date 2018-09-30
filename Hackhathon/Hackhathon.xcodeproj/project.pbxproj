@@ -10,6 +10,7 @@
 		210B4B96215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */; };
 		210B4B98215F49970036A58D /* GameLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4B97215F49970036A58D /* GameLevelViewController.swift */; };
 		210B4B9A215FBB960036A58D /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4B99215FBB960036A58D /* Score.swift */; };
+		210B4B9C2160D25A0036A58D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4B9B2160D25A0036A58D /* Data.swift */; };
 		2169A6EF215E6CAD00284830 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2169A6EE215E6CAD00284830 /* ViewController.swift */; };
 		21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21767AFD215E0504009F13F0 /* AppDelegate.swift */; };
 		21767B03215E0504009F13F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21767B01215E0504009F13F0 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		210B4B95215EA9950036A58D /* AttemptedAnswerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptedAnswerCellTableViewCell.swift; sourceTree = "<group>"; };
 		210B4B97215F49970036A58D /* GameLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevelViewController.swift; sourceTree = "<group>"; };
 		210B4B99215FBB960036A58D /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		210B4B9B2160D25A0036A58D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2169A6EE215E6CAD00284830 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21767AFA215E0504009F13F0 /* Hackhathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackhathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21767AFD215E0504009F13F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				21767B0C215E0505009F13F0 /* Info.plist */,
 				21767B04215E0504009F13F0 /* Hackhathon.xcdatamodeld */,
 				210B4B99215FBB960036A58D /* Score.swift */,
+				210B4B9B2160D25A0036A58D /* Data.swift */,
 			);
 			path = Hackhathon;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				210B4B98215F49970036A58D /* GameLevelViewController.swift in Sources */,
 				21767B2B215E3D28009F13F0 /* GameBoardViewController.swift in Sources */,
 				21767AFE215E0504009F13F0 /* AppDelegate.swift in Sources */,
+				210B4B9C2160D25A0036A58D /* Data.swift in Sources */,
 				210B4B9A215FBB960036A58D /* Score.swift in Sources */,
 				F18161A9215E40C700D8CEE3 /* AvailableCell.swift in Sources */,
 				21767B06215E0504009F13F0 /* Hackhathon.xcdatamodeld in Sources */,
