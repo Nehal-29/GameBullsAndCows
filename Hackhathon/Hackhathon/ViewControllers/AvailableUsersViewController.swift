@@ -60,14 +60,12 @@ class AvailableUsersViewController: UIViewController {
                 let artistGenre = artistObject["isOnline"] as? Bool
                 let isPlaying = artistObject["isPlaying"] as? Bool
                 let artist = UsersOnlineData(id: artistId, email: artistName, isOnline: artistGenre, isPlaying: isPlaying)
-             self.userList.append(artist)
-            
-            if let email = UserDefaults.standard.value(forKey: "email") as? String {
-                if artistName != email {
-                    self.userList.append(artist)
+                if let email = UserDefaults.standard.value(forKey: "email") as? String {
+                    if email != artistName {
+                        self.userList.append(artist)
+                    }
                 }
             }
-        }
       }
     }
     
