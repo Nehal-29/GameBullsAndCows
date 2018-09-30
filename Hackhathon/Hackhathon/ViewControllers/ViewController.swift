@@ -25,8 +25,8 @@ class UsersOnlineData: NSObject {
     }
 }
 
-class ViewController: UIViewController, UITextFieldDelegate {
-
+class ViewController: UIViewController {
+    
     @IBOutlet var usernameTxt: UITextField!
     @IBOutlet var submitButton: UIButton!
     var playView: UIView = UIView.init()
@@ -34,14 +34,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         usernameTxt.delegate = self
         self.navigationController?.navigationBar.isHidden = true
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        self.usernameTxt.keyboardType = .emailAddress
     }
     
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
     func loginLogicForEmailAndPassword(email: String) {
         Auth.auth().createUser(withEmail: email, password: "rt7qhqjgw") { (result, error) in
             if let error = error {
@@ -55,17 +66,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         print("Error: \(error.localizedDescription)")
                     }
                 }
-        }
+            }
             if let _ = Auth.auth().currentUser {
-              let refArt = Database.database().reference().child("Users")
+                let refArt = Database.database().reference().child("Users")
                 let key = refArt.childByAutoId().key
                 UserDefaults.standard.set(email, forKey: "email")
                 UserDefaults.standard.set(key ?? "", forKey: "AutoID")
                 UserDefaults.standard.synchronize()
                 let userData = ["id":key ?? "",
-                              "Email": email,
-                              "isOnline": true,
-                              "isPlaying": false
+                                "Email": email,
+                                "isOnline": true,
+                                "isPlaying": false
                     ] as [String : Any]
                 refArt.child(key!).setValue(userData)
                 let refWantToPlay = Database.database().reference().child("WantToPlay")
@@ -81,11 +92,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.addTheObserverForPlayEvent()
             }
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     func createPlayView() {
@@ -188,3 +194,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+}
