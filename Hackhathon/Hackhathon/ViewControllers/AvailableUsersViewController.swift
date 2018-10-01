@@ -27,14 +27,15 @@ class AvailableUsersViewController: UIViewController {
     func getDataForTheUsers() {
         let refArt = Database.database().reference().child("Users")
         refArt.observe(DataEventType.value, with: { (snapshot) in
-            self.userList = []
             //if the reference have some values
             if snapshot.childrenCount > 0 {
                 self.userList = []
                 //iterating through all the values
                self.createDataModelForTheAvailableSnapShot(snapshot: snapshot)
             }
-            self.availableTableView.reloadData()
+            DispatchQueue.main.async {
+                self.availableTableView.reloadData()
+            }
         })
     }
     
